@@ -1,3 +1,0 @@
-# TILearn
-
-### Android - Kotlin
