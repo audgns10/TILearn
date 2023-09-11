@@ -15,10 +15,13 @@
 1. Linear Layout
 
 * Linear Layout은 뷰를 수평 또는 수직 방햑으로 배치할 수 있는 레이아웃이다 -> orientation 속성을 통해 배치방향을 결정할 수 있다
+* 
 <br>
+
 ```
 android:orientation = "vertical" -> 하위 뷰들을 수직방향으로 배치
 ```
+
 ```
 android:orientation = "horizontal" -> 하위 뷰들을 수평방향으로 배치
 ```
