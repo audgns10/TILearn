@@ -1,0 +1,71 @@
+# Android Activity
+
+## Activity란
+
+*먼저 Activity란 4대 컴포넌트 중 하나이고 사용자와 상호작용을 하는 UI를 제공하는 역할을 한다*
+
+* Activity 설계
+    * 하나의 애플리케이션에서 모든 화면 당 하나의 Activity로 관리를 하게 되면 apk 크기도 커지고 화면 이동 간 시간적인 소요도 더 오래 걸릴 것이다. 너무 불필요하게 많이 만들지 않은 것이 권장되고, UI 액션이 많다면 Activity 말고도 Fragment이나 popup으로 대체하면 좋다
+
+<br>
+
+* Activity LifeCycle -> 6개의 콜백이 제공된다
+
+    1. onCreate
+
+        * 안드로이드 시스템이 Activity를 생성할 때 실행되는 콜백메소드로 전체 LifeCycle 동안 한 번 호출된다. 주로 ViewBinding, DataBinding를 사용하여 UI를 구성하는 Layout과 연결하고 ViewModel과 의 연결 또는 클래스 인스턴스를 생성과 같은 Activity의 시작 로직들이 포함되어 있음. ViewBinding과 DataBinding을 사용하지 않는다면 setContentView를 호출하여야 하고 이 메소드는 onCreate 콜백에 종속적이다. 이 메서드에는 Key와 Value의 형태로 저장하는 Bundle 타입의 savedInstanceState 매개변수가 있다. 이전 Activity의 상태를 저장하여 생성 시에 설정하기 위한 변수로 처음 Activity를 실행했다면 해당 매개변수에는 null 값이다
+
+    2. onStart
+
+        * onCreate 이후 시작상태가 되었고, 시스템은 연달아 onStart, onResume 콜백을 호출하게 된다. onStart가 호출은 두가지 경우로 나뉘어 실행되는데 처음 생성 이후 호출될 때와 onRestart 콜백을 수신 후 재시작될 때 호출된다. onStart에서는 Activity가 사용자에게 표시되고, 포그라운드로 이동할 준비를 하게 된다. 해당 콜백은 빠르게 완료가 되고 onResume 콜백을 호출하게 된다
+
+    3. onResume
+
+        * onResume이 호출된 이후에만 Activity가 포그라운드 상태가 되었고 사용자와 상호작용을 할 수 있는 곳이다. 실제로 setContentView 결과가 보여지는 부분이다. 재시작 이후 백그라운드에 있던 Activity가 포그라운드에 상태가 되고 모든 화면에 해당 Activity가 가득 찬 모습이어야 한다. 전화가 오거나, 홈버튼을 눌러 해당 Activity의 화면이 꺼지는 이벤트가 발생하기 전까지 onResume은 onPause에서 해채했던 리소스들을 다시 초기화 하는 코드가 있어야 한다. 즉, onResume과 onPauseㄴ는 태칭적으로 리소스/데이터 초기화와 해제를 해야 한다
+
+
+    4.  onPause
+
+        * Activity가 포그라운드로 바뀌는 시접ㅁ으로 화면의 일부가 가려진 상태일 때 onPause 콜백이 호춣됨. 이벤트가 발생하여 새로운 Activity가 포그라운드로 나오기전까지는 onPause 상태에 있다가 포그라운드로 나오는 순간 모든 화면이 가려지면 onStop 콜백을 호출하게 된다. 또는 Dialog Activity나 투명 Activity가 위에 뜰 경우에도 onPause상태에 머물게 된다.
+
+        * onPause와 onStop의 차이
+            * onPause는 포그라운드에서 백그라운드로 전환되는 시점으로 화면의 일부가 가려진 상태에서 호출이 됨. onStop은 완전히 화면이 가려지면 호출이 된다. onPause는 아주 잠깐 실행되므로 현재 화면을 구성하는 데이터를 저장하거나, 네트워크 호출 또는 DB 트랙잭션과 같은 시간 요소가 있는 작업들을 실행해서는 안된다. 이러한 것처럼 부하가 큰 작업들은 주로 onStop에서 처리해야 한다
+
+    5. onStop
+        
+        * 위에서 말한바와 같이 Activity가 이벤트로 인해 새로운 화면이 나타나서 전체 화면을 가리게 되면 onStop 이 호출되게 된다. onStop에서는 Activity에서 이제 사용되지 않을 리소스들을 해제하거나 현재 상태 정보를 저장하기 위한 DB 작업들을 진행해야 한다. onStop에서 중요한 점은 Activity 객체는 아직 메모리 안에 머무르게 된다. 이 객체에서 window manager와 연결되어 있지 않을 뿐 모든 상태나 멤버 정보는 계속 관리 하고 있다. Activity가 다시 재개 되면 이 정보들을 다시 호출할 수 있다. 재개 시 onCreate에서 생성한 구성요소는 다시 초기화 할 필요 없고 레이아웃에 있는 각 View 객체도 현재 상태를 기록하기에 저장 및 복원할 필요 없다
+
+    6. onDestroy
+
+        * Activity가 완전히 소멸되기 전에 onDestroy 콜백이 호출된다. 공식문서에서는 onDestroy가 발생하는 경우는 2가지라고 나와있지만, finish() 함수를 호출하여 Activity가 종료되는 경우와 같은 구성 변경으로 인해 일시적으로 소멸되는 경우이다. 하지만 그 외에도 시스템에 의한 액티비티가 제거가 될 수도 있고, 이 경우에서도 onDestroy까지 호출이 된다. 자세히 말하자면 여러 태스크를 사용하는 애플리케이션에서 메모리를 많이 사용할 때 발생할 수 있다. 하나의 태스크를 갖는 애플리케이션에서는 메모리가 사용량이 많아질 경우에는 OutOfMemoryError가 발생하지만, 여려 태스크를 사용한다면 OutOFMemoryError가 발생하기 전에 메모리를 줄일 수 있는 방법으로 백그라운드 테스크의 액티비티를 종료시키게 된다. 시스템에서 Activity를 제거할 때에도 onDestroy까지 호출이 된다
+
+* * *
+
+## 생명주기 메소드 호출 순서
+
+* 시작할 때 : onCreat --> onStart --> onResume 
+* 화면 회전할 때 : onPause --> onStop --> onDestroy --> onStart --> onResume
+* 홈 버튼 클릭 시 : onPause --> onStop
+* 홈 이동후 다시 돌아올 때 : onRestart --> onStart --> onResume
+* 백 버튼 클릭하여 액티비티 종료 시 : onPause --> onStop --> onDestroy
+
+<br>
+
+## 액티비티 전환 시 생명주기 메소드 호출
+
+1. Activity A는 onPause 메소드를 실행한다(Activity A가 백그라운드로 이동)
+2. Activity B는 onCreate, onStart, onResume 메소드를 실행하여 포그라운드 상태가 된다
+3. Activity B가 onResume까지 호출된 이후에는 포그라운드 상태가 되고 전체 화면을 가득 채우기 때문에 Activity A가 onStop 메소드가 호출되게 된다
+
+<br>
+
+## 생명주기 메소드 사용시 주의사항
+
+1. 리소스 생성 / 제거는 대칭으로 실행
+    * onCreate에서 리소스 생성했으면 onDestroy에 해제를 하고 onResume에 생성하면 onPause가 되면 닫는다고 가정했을 때 재기작이 되면 닫힌 DB는 열기 때문에 문제가 발생할 수가 있다. 즉, onCreate에서 DB를 열었다면 onDestroy에 닫도록 해야 한다
+
+2. finish() 메소드 호출 후 return 필수
+    * finish 함수로 액티비티 종료 시에 finish 메소드는 시스템에 액티비티를 종료하라는 메시지를 보낼 뿐 리턴을 하는게 아니다. finish 메소드 이후에도 로직이 있다면, 해당 로직이 수행될 수 있으며 정상적인 결과를 얻지 못하거나, 오류가 발생하게 될 수 있다. 따라서 finish 메소드를 호출했다면 return을 필수도 추가하여 이후로 로직이 실행되지 않도록 해야 한다
+
+
+![텍스트](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbuBgEa%2FbtrjHVGY6Dk%2Ff7VqYtgqXUmNR5wOiBK4zk%2Fimg.png)
