@@ -89,7 +89,7 @@
 
     <br>
 
-    ![](https://cdn.discordapp.com/attachments/1171055198978977792/1172071557472989184/image.png?ex=655efbb3&is=654c86b3&hm=923f093066150feb9a9b0efcbc271f84dad98da5b92e3a32e0b02271773e7156&)
+    ![](https://cdn.discordapp.com/attachments/1171055198978977792/1172081152283115520/image.png?ex=655f04a2&is=654c8fa2&hm=ad2961bc85879b2e4927e9071bcc635faddb6235c05a4aaf81bbdd669afdb96b&)
 
     <br>
     <br>
