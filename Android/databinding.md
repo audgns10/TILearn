@@ -74,7 +74,7 @@
 
     <br>
 
-    ![](https://cdn.discordapp.com/attachments/1171055198978977792/1172069524900679680/image.png?ex=655ef9ce&is=654c84ce&hm=09947364bbf3377d11826756afb91ee7218a2e8b48ffb0df6b05556c4cfa045d&)
+        ![](https://cdn.discordapp.com/attachments/1171055198978977792/1172069524900679680/image.png?ex=655ef9ce&is=654c84ce&hm=09947364bbf3377d11826756afb91ee7218a2e8b48ffb0df6b05556c4cfa045d&)
 
     <br>
     <br>
