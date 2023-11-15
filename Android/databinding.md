@@ -38,7 +38,14 @@
 
     <br>
 
-    ![텍스트](https://media.discordapp.net/attachments/1171055198978977792/1172064888366055464/image.png?ex=655ef57d&is=654c807d&hm=d7ae240554a5b4966a01faca33d2cc9b0ff28809ab9632dbd529fe921011e34d&=&width=519&height=211)
+    ```kt
+    android {
+        ...
+        dataBinding{
+            enabled = true
+        }
+    }
+    ```
 
     <br>
     <br>
@@ -48,7 +55,7 @@
 
     <br>
 
-    ![텍스트](https://cdn.discordapp.com/attachments/1171055198978977792/1172066628083654696/image.png?ex=655ef71c&is=654c821c&hm=da1a1628498e40eba85ca6c203254d0302b413466a53ff5a775de9efbfe525fc&)
+    ![텍스트](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FPMqAR%2FbtqDSjtMLAl%2FUTLexkucS3Pgu9gi1nS5Z1%2Fimg.png)
 
     * binding class는 data binding을 사용하는 클래스의 이름에 따라 각 레이아웃 파일에 대해 뒤에 "Binding" 이라는 suffix가 붙은 Camel Case로 자동으로 생성된다
 
@@ -63,7 +70,7 @@
 
     <br>
 
-    ![텍스트](https://cdn.discordapp.com/attachments/1171055198978977792/1172068552057045023/image.png?ex=655ef8e6&is=654c83e6&hm=f3d99116e9fae057a38ceed411500c060e730e47975680d785a35beff0aa7f2c&)
+    ![텍스트](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FsF7iD%2FbtqDRMiGDh3%2FBZDDSsuitCJeEhkoIjYuQ1%2Fimg.png)
 
     <br>
     <br>
@@ -74,7 +81,7 @@
 
     <br>
 
-        ![](https://cdn.discordapp.com/attachments/1171055198978977792/1172069524900679680/image.png?ex=655ef9ce&is=654c84ce&hm=09947364bbf3377d11826756afb91ee7218a2e8b48ffb0df6b05556c4cfa045d&)
+    ![텍스트](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbW0YOx%2FbtqDPLsadN1%2FskxZ9GjiBT9q8O0gIByak1%2Fimg.png)
 
     <br>
     <br>
@@ -89,7 +96,7 @@
 
     <br>
 
-    ![](https://cdn.discordapp.com/attachments/1171055198978977792/1172081152283115520/image.png?ex=655f04a2&is=654c8fa2&hm=ad2961bc85879b2e4927e9071bcc635faddb6235c05a4aaf81bbdd669afdb96b&)
+    ![텍스트](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F2wQbT%2FbtqDQ9SYlWp%2FUdRxlbhOLvExTjEXrfX3R1%2Fimg.png)
 
     <br>
     <br>
@@ -100,4 +107,4 @@
 
     <br>
 
-    ![](https://cdn.discordapp.com/attachments/1171055198978977792/1172072276817104958/image.png?ex=655efc5e&is=654c875e&hm=13e506e738a1e6776f964cbe93f8ecdd7bdaf921e11ee805d703241fad19c600&)
+    ![텍스트](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdwCvqu%2FbtqDQSRrJ6o%2FnpUIkSwZJt6dvGpfOcVI61%2Fimg.png)
