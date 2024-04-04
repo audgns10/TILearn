@@ -65,3 +65,34 @@
 
 * 단점   
     토큰의 크기를 생각해야한다 / 만료 기간도 생각해서 구현을 해야한다
+
+* * *
+
+**Access, Refresh Token**
+
+* 문제   
+    만약에 토큰을 탈취를 당했다면 토큰을 탈취한 사람은 마치 신뢰가 가능한 사람이 것처럼 사용이 가능하기 때문이다. 본 주인은 클라이언트와 탈취한 사람을 구분할 수 없다. -> 해결을 할 수 있는 방안은 유효기간을 두어야 하는 것이다.(Access, Refresh Token 두개를 두는 것이다)
+
+    * Access Token의 기간은 짧다
+    * Refresh Token의 기간은 길다
+    * 평소 api 통신을 할때는 Access Token을 사용해서 하고 만로가 되었을때는 Refresh Token를 사용한다
+    * Access Token의 기간을 짧게 두고 Refresh Token 자주 발급해주면서 피해를 최소화
+
+<br>
+
+* 프로세스   
+    1. 로그인 인증에 성공한 클라이언트는 Access, Refresh Token를 받아온다
+    2. 클라이언트는 Access, Refresh Token을 로컬에 저장을 해논다
+    3. 클라이언트는 헤더에 Access Token을 넣고 API 통신한다
+    4. 일정 시간이 지나 Access Token이 만료가 된다
+        * Access Token은 이제 유효하지 않으므로 권한이 없는 사용자가 된다
+        * 유효기간이 지난 Access Token을 받은 서버는 401를 반환한다
+        * 401를 통해서 클라이언트는 만료가 되었음을 알 수 있다(invalid_token)
+    5. 헤더에 Access Token 대신 Refresh Token를 넣어 API를 요청한다
+    6. Refresh Token으로 사용자의 권한을 확인한 서버는 응답쿼리 헤더에 새로운 Access Token을 넣어 응답을 해준다
+    7. 만약 Refresh Token이 만료가 된 경우라면 401를 뱉고, 클라이언트는 재로그인을 시도해야한다
+
+    **이런식으로 한다면 Access Token을 탈취한다고 해도 기간이 짧기 때문에 다른 Access Token을 다시 탈취를 해야할 것이다.. 왜냐하면?! JWT Token은 만료시간을 변경하는 것이 불가능!!하기 때문이다.**
+
+    * Refresh Token의 탈취 위험성
+        * Refresh Token의 통신 빈도가 적기는 하지만 아예 안위험하다고 말을 할 수는 없다. 이에 대한 해결 방안으로는 Access Token을 받아올때 Refresh Token도 새로 받아오는 방법이다 -> 만약 이렇게 된다면 탈취가 Refresh Token을 탈취를 하였다고 하더라도 그것이 유효기간이 더이상 길지않은 Refresh Token 일것이다.
