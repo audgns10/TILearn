@@ -94,5 +94,5 @@
 
     **이런식으로 한다면 Access Token을 탈취한다고 해도 기간이 짧기 때문에 다른 Access Token을 다시 탈취를 해야할 것이다.. 왜냐하면?! JWT Token은 만료시간을 변경하는 것이 불가능!!하기 때문이다.**
 
-    * Refresh Token의 탈취 위험성
+    * Refresh Token의 탈취 위험성(Refresh Token Rotation으로 해결)
         * Refresh Token의 통신 빈도가 적기는 하지만 아예 안위험하다고 말을 할 수는 없다. 이에 대한 해결 방안으로는 Access Token을 받아올때 Refresh Token도 새로 받아오는 방법이다 -> 만약 이렇게 된다면 탈취가 Refresh Token을 탈취를 하였다고 하더라도 그것이 유효기간이 더이상 길지않은 Refresh Token 일것이다.
