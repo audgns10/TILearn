@@ -8,4 +8,4 @@
 
 <br>
 
-* Android에서는 UiState를 사용하기 위ㅎ서 sealed class를 활용한 State Modeling 전략을 사용한다
+* Android에서는 UiState를 사용하기 위해서 sealed class를 활용한 State Modeling 전략을 사용한다
